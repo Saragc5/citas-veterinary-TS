@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Header } from './Components/Header'
+import { ListPatients } from './Components/ListPatients';
+import { Form } from './Components/Form';
+import { useState, useEffect } from 'react'
+import { Paciente } from './types'
 
-function App() {
+const App:React.FC = () => {
+
+  const [pacientes, setPacientes] = useState<Paciente[]>([]);
+  const [paciente, setPaciente] = useState<Paciente>();
+
+  useEffect(() => {
+    const obtenerLista = () => {
+      const pacientesFromLista = localStorage.getItem('pacientes');
+      const pacientesLista: Paciente[] = pacientesFromLista ? JSON.parse(pacientesFromLista) : [];
+      setPacientes(pacientesLista)
+    }
+    obtenerLista();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('pacientes', JSON.stringify( pacientes ));
+  }, [pacientes])
+
+  const eliminarPaciente = (id:number ) => {
+    const pacientesActualizados = pacientes.filter( paciente => paciente.id !== id);
+    setPacientes(pacientesActualizados)
+  }
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container mx-auto mt-20">
+      <Header />
+      <div className="mt-12 md:flex">
+        <Form 
+          pacientes={pacientes}
+          setPacientes={setPacientes}
+          paciente={paciente}
+          setPaciente={setPaciente}
+          />
+        <ListPatients 
+        pacientes={pacientes}
+        setPaciente={setPaciente}
+        eliminarPaciente={eliminarPaciente}
+        />
+      </div>
     </div>
   );
 }
