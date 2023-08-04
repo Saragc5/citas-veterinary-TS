@@ -2,12 +2,13 @@ import { Header } from './Components/Header'
 import { ListPatients } from './Components/ListPatients';
 import { Form } from './Components/Form';
 import { useState, useEffect } from 'react'
-import { Paciente } from './types'
+import { ListPatientsProps, Paciente } from './types'
+import { Patient } from './Components/Patient';
 
 const App:React.FC = () => {
 
   const [pacientes, setPacientes] = useState<Paciente[]>([]);
-  const [paciente, setPaciente] = useState<Paciente>();
+  const [paciente, setPaciente] = useState<Paciente>({ id: '', nombre: '', propietario: '' });
 
   useEffect(() => {
     const obtenerLista = () => {
@@ -19,10 +20,10 @@ const App:React.FC = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('pacientes', JSON.stringify( pacientes ));
+    localStorage.setItem('pacientes', JSON.stringify(pacientes));
   }, [pacientes])
 
-  const eliminarPaciente = (id:number ) => {
+  const eliminarPaciente = (id:string ) => {
     const pacientesActualizados = pacientes.filter( paciente => paciente.id !== id);
     setPacientes(pacientesActualizados)
   }
@@ -31,16 +32,19 @@ const App:React.FC = () => {
     <div className="container mx-auto mt-20">
       <Header />
       <div className="mt-12 md:flex">
-        <Form 
+        <Form
           pacientes={pacientes}
           setPacientes={setPacientes}
           paciente={paciente}
           setPaciente={setPaciente}
-          />
-        <ListPatients 
-        pacientes={pacientes}
-        setPaciente={setPaciente}
-        eliminarPaciente={eliminarPaciente}
+          eliminarPaciente={eliminarPaciente}
+        />
+        <ListPatients
+          id={paciente.id}
+          pacientes={pacientes}
+          setPaciente={setPaciente}
+          eliminarPaciente={eliminarPaciente}
+          
         />
       </div>
     </div>

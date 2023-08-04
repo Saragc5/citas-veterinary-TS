@@ -1,20 +1,23 @@
 import { ReactNode } from 'react';
 
 export interface Paciente {
-  id: number;
+  id: string;
   nombre: string;
   propietario: string
 }
-
-
-export interface EliminarPacienteProps {
-    eliminarPaciente: (id: number) => void;
+export interface NuevoPaciente {  
+  nombre: string;
+  propietario: string
 }
 
 export interface ChildrenProps {
     children: ReactNode;
 }
 
+export interface EliminarPacienteProps {
+  id: Paciente["id"]
+    eliminarPaciente: (id: string) => void;
+}
 export interface SetPacienteProps{
     paciente : Paciente,
     setPaciente: React.Dispatch<React.SetStateAction<Paciente>>; 
@@ -23,5 +26,13 @@ export interface SetPacienteProps{
 export interface SetListaPacientesProps {
   pacientes: Paciente[];
   setPacientes: React.Dispatch<React.SetStateAction<Paciente[]>>;
-  eliminarPaciente: (id: number) => void;
+  eliminarPaciente: (id: string) => void;
 }
+export interface ListPatientsProps {
+  id: Paciente['id'];
+  pacientes : Paciente[],
+  setPaciente: React.Dispatch<React.SetStateAction<Paciente>>; 
+  eliminarPaciente: (id: string) => void;
+}
+
+

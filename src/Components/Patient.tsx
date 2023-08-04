@@ -1,19 +1,14 @@
-import { Paciente, EliminarPacienteProps, SetPacienteProps } from "../types"
+import { EliminarPacienteProps, SetPacienteProps } from "../types"
 
-export const Patient:React.FC<Paciente & EliminarPacienteProps & SetPacienteProps > = ({
+export const Patient:React.FC<EliminarPacienteProps & SetPacienteProps> = ({
   id,
-  nombre,
-  propietario,
-  // email,
-  // fecha, 
-  // sintomas,
  eliminarPaciente,
  paciente,
  setPaciente
 }) => {
 
-
-  const handleEliminar = (id:number) => (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("La id actual es:" , id)
+  const handleEliminar = (id:string) => (e: React.MouseEvent<HTMLButtonElement>) => {
     const respuesta = window.confirm('Deseas eliminar este paciente?');
 
     if(respuesta) {
@@ -23,13 +18,13 @@ export const Patient:React.FC<Paciente & EliminarPacienteProps & SetPacienteProp
   return(
     <div className="mx-5 my-10 bg-white shadow-md px-5 py-10 rounded-xl">
             <p className="font-bold mb-3 text-gray-700 uppercase">Nombre: {''}
-                <span className="font-normal normal-case">{nombre}</span>
+                <span className="font-normal normal-case">{paciente.nombre}</span>
             </p>
 
-            {/* <p className="font-bold mb-3 text-gray-700 uppercase">Propietario: {''}
-                <span className="font-normal normal-case">{propietario}</span>
+             <p className="font-bold mb-3 text-gray-700 uppercase">Propietario: {''}
+                <span className="font-normal normal-case">{paciente.propietario}</span>
             </p>
-
+{/*
             <p className="font-bold mb-3 text-gray-700 uppercase">Email: {''}
                 <span className="font-normal normal-case">{email}</span>
             </p>
