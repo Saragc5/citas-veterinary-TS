@@ -11,6 +11,9 @@ export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
 }) => {
   const [nombre, setNombre] = useState<string>("");
   const [propietario, setPropietario] = useState<string>("");
+  const [email, setEmail] = useState<string>("")
+  const [fecha, setFecha] = useState<string>("")
+  const [sintomas, setSintomas] = useState<string>("")
 
   const [error, setError] = useState<boolean>(false);
 
@@ -18,6 +21,10 @@ export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
     if (paciente !== undefined && Object.keys(paciente).length > 0) {
       setNombre(paciente.nombre);
       setPropietario(paciente.propietario);
+      setEmail(paciente.email);
+      setFecha(paciente.fecha);
+      setSintomas(paciente.sintomas);
+
     }
   }, [paciente]);
 
@@ -36,6 +43,9 @@ export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
     const objetoPaciente: Paciente = {
       nombre,
       propietario,
+      email,
+      fecha, 
+      sintomas
     };
     console.log("El paciente es: ", objetoPaciente);
 
@@ -52,6 +62,9 @@ export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
         id: undefined,
         nombre: "",
         propietario: "",
+        email:"",
+        fecha:"",
+        sintomas:""
       });
     } else {
       // Nuevo registro
@@ -64,6 +77,9 @@ export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
     // Reiniciar el form
     setNombre("");
     setPropietario("");
+    setEmail("");
+    setFecha("");
+    setSintomas("")
   };
 
   if (paciente === undefined) {
@@ -93,7 +109,7 @@ export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
               htmlFor="mascota"
               className="block text-gray-700 uppercase font-bold"
             >
-              Nombre de la mascota {nombre}
+              Nombre de la mascota 
             </label>
             <input
               id="mascota"
@@ -111,7 +127,7 @@ export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
               htmlFor="propietario"
               className="block text-gray-700 uppercase font-bold"
             >
-              Propietario {propietario}
+              Propietario 
             </label>
             <input
               id="propietario"
@@ -124,10 +140,64 @@ export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
               }
             />
           </div>
+          <div className="mb-5">
+            <label
+              htmlFor="email"
+              className="block text-gray-700 uppercase font-bold"
+            >
+              Email 
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="email del propietario"
+              className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+              value={email}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
+            />
+          </div>
+          <div className="mb-5">
+            <label
+              htmlFor="fecha"
+              className="block text-gray-700 uppercase font-bold"
+            >
+              Fecha 
+            </label>
+            <input
+              id="fecha"
+              type="date"
+              placeholder="fecha"
+              className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+              value={fecha}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setFecha(e.target.value)
+              }
+            />
+          </div>
+          <div className="mb-5">
+          <label
+            htmlFor="sintomas"
+            className="block text-gray-700 uppercase font-bold"
+          >
+            Síntomas 
+          </label>
+          <input
+            id="sintomas"
+            type="text"
+            placeholder="Síntomas"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            value={sintomas}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setSintomas(e.target.value)
+            }
+          />
+        </div>
           <input
             type="submit"
             className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
-            value={paciente.id ? "Editar Paciente" : "Agregar Paciente"}
+            value={paciente.id ? "Guardar cambios" : "Agregar Paciente"}
           />
         </form>
       </div>

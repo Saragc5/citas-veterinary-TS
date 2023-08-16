@@ -30,18 +30,18 @@ export const Patient: React.FC<EliminarPacienteProps & SetPacienteProps> = ({
         Propietario: {""}
         <span className="font-normal normal-case">{paciente.propietario}</span>
       </p>
-      {/*
-            <p className="font-bold mb-3 text-gray-700 uppercase">Email: {''}
-                <span className="font-normal normal-case">{email}</span>
-            </p>
+      
+        <p className="font-bold mb-3 text-gray-700 uppercase">Email: {''}
+            <span className="font-normal normal-case">{paciente.email}</span>
+        </p>
 
-            <p className="font-bold mb-3 text-gray-700 uppercase">Fecha Alta: {''}
-                <span className="font-normal normal-case">{fecha}</span>
-            </p>
+        <p className="font-bold mb-3 text-gray-700 uppercase">Fecha Alta: {''}
+            <span className="font-normal normal-case">{paciente.fecha}</span>
+        </p>
 
-            <p className="font-bold mb-3 text-gray-700 uppercase">Síntomas: {''}
-                <span className="font-normal normal-case">{sintomas}</span>
-            </p> */}
+        <p className="font-bold mb-3 text-gray-700 uppercase">Síntomas: {''}
+            <span className="font-normal normal-case">{paciente.sintomas}</span>
+        </p>
 
       <div className="flex justify-between mt-10">
         <button

@@ -10,6 +10,9 @@ const App: React.FC = () => {
     id: "",
     nombre: "",
     propietario: "",
+    email:"",
+    fecha:"",
+    sintomas:""
   });
 
   useEffect(() => {

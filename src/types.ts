@@ -1,9 +1,12 @@
 import { ReactNode } from 'react';
 
 export interface Paciente {
-  id?: string;
-  nombre: string;
-  propietario: string
+  id?: string,
+  nombre: string,
+  propietario: string,
+  email: string,
+  fecha: string,
+  sintomas: string
 }
 export interface NuevoPaciente {  
   nombre: string;
