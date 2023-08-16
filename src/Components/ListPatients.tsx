@@ -1,13 +1,13 @@
 import { Patient } from './Patient'
-import { ListPatientsProps } from '../types'
+import { ListPacientesProps } from '../types'
 
-export const ListPatients: React.FC<ListPatientsProps> = ({
+export const ListPatients: React.FC<ListPacientesProps> = ({
   id,
   pacientes,
   setPaciente,
   eliminarPaciente,
 }) => {
-  console.log(pacientes);
+  
   return (
     <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll">
       {pacientes && pacientes.length ? (

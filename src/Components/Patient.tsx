@@ -6,7 +6,6 @@ export const Patient: React.FC<EliminarPacienteProps & SetPacienteProps> = ({
   paciente,
   setPaciente,
 }) => {
-  console.log("La id actual es:", id);
   const handleEliminar =
     (id: string | undefined) => (e: React.MouseEvent<HTMLButtonElement>) => {
       if (id) {

@@ -31,14 +31,12 @@ export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //Validación de formulario:
-    if ([nombre, propietario].includes("")) {
-      console.log("Hay al menos un campo vacío");
+    if ([nombre, propietario].includes("")) {      
       setError(true);
       return;
     }
     setError(false);
-
-    console.log("evento form: enviado datos");
+    
 
     const objetoPaciente: Paciente = {
       nombre,
@@ -47,7 +45,7 @@ export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
       fecha, 
       sintomas
     };
-    console.log("El paciente es: ", objetoPaciente);
+    
 
     if (paciente.id) {
       // Editando el Registro
@@ -59,7 +57,7 @@ export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
       setPacientes(pacientesActualizados);
       //Borro los campos del formulario al agregar el paciente:
       setPaciente({
-        id: undefined,
+        id: "",
         nombre: "",
         propietario: "",
         email:"",
