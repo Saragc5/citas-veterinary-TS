@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { SetPacienteProps, SetListaPacientesProps, Paciente } from '../types'
 import { v4 as uuidv4 } from 'uuid';
+import { Error } from './Error'
 
 export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
   paciente,
@@ -83,7 +84,10 @@ export const Form: React.FC<SetPacienteProps & SetListaPacientesProps> = ({
           onSubmit={handleSubmit}
           className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
         >
-          {error ? "Hay error" : "No hay error"}
+          <span className={error ? "text-red-500" : "text-black"}>
+            { error ? "Error en el formulario:" : "Rellene el formulario"}
+            { error &&  <Error><p className='text-red-500'>Todos los campos son obligatorios</p></Error>}
+          </span>
           <div className="mb-5">
             <label
               htmlFor="mascota"
