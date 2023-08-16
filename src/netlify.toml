@@ -1,0 +1,3 @@
+[build]
+  command = "npm run build"
+  environment = { REACT_APP_BABEL_PLUGIN_PRIVATE_PROPERTY_IN_OBJECT = "true" }
