@@ -21,19 +21,10 @@ export const Form:React.FC<SetPacienteProps & SetListaPacientesProps> = ({
     }
 }, [paciente]);
 
-// const generarId = () => {
-//   const random = Math.random().toString(36);
-//   const fecha = Date.now().toString(36)
-//   console.log( random, fecha)
-//   return random + fecha
-// }
-
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //Validación de formulario:
-    // const isSomethingEmpty:boolean = Object.keys(paciente).some(item => (item === "" || item === " "));
-    // console.log("isSomeThingEmpty es: ",isSomethingEmpty)
+    //Validación de formulario: 
     if ([nombre, propietario].includes('')) {
       console.log("Hay al menos un campo vacío");
       setError(true);
@@ -43,26 +34,26 @@ export const Form:React.FC<SetPacienteProps & SetListaPacientesProps> = ({
       
           
     console.log("evento form: enviado datos");
-
-    
-
   
-
-      
       const objetoPaciente: Paciente = {     
         nombre,
         propietario
       };
-      console.log("El paciente es: ", paciente)
+      console.log("El paciente es: ", objetoPaciente)
+      
       if (paciente.id) {
         // Editando el Registro
         objetoPaciente.id = paciente.id;
-        const pacientesActualizados = pacientes.map((pacienteState) =>
+        const pacientesActualizados: Paciente[] = pacientes.map((pacienteState) =>
           pacienteState.id === paciente.id ? objetoPaciente : pacienteState
         );
   
         setPacientes(pacientesActualizados);
-        setPaciente(objetoPaciente);
+        setPaciente({
+          id: undefined,
+          nombre: '',
+          propietario: '',
+        })
       } else {
         // Nuevo registro
         const generarIdUnico = (): string => {
@@ -132,8 +123,9 @@ export const Form:React.FC<SetPacienteProps & SetListaPacientesProps> = ({
           <input
             type="submit"
             className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
+            value={ paciente.id ? 'Editar Paciente' : 'Agregar Paciente' }
           />
-          <input type="submit" />
+          
         </form>
       </div>
   )
