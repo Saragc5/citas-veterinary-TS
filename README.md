@@ -6,9 +6,9 @@ Used hooks to change the state and see the details.
 
 Credits to Udemy Course: React - La Guía Completa
 
-# You can see it live:
+## You can see it live:
 
-[Citas veterinary](https://github.com/Saragc5/citas-veterinary-react)
+[Citas veterinary](https://veterinay-appointments.netlify.app)
 
 
 ### Getting started:
