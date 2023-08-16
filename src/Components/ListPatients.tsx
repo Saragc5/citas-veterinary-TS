@@ -1,15 +1,13 @@
 import { Patient } from './Patient'
 import { ListPatientsProps } from '../types'
 
-export const ListPatients: React.FC<ListPatientsProps > = ({
+export const ListPatients: React.FC<ListPatientsProps> = ({
   id,
   pacientes,
   setPaciente,
   eliminarPaciente,
-  
 }) => {
-
-  console.log(pacientes)
+  console.log(pacientes);
   return (
     <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll">
       {pacientes && pacientes.length ? (
@@ -26,7 +24,6 @@ export const ListPatients: React.FC<ListPatientsProps > = ({
           </p>
           {pacientes.map((paciente) => (
             <div key={paciente.id}>
-
               <Patient
                 id={paciente.id}
                 paciente={paciente}
@@ -35,7 +32,6 @@ export const ListPatients: React.FC<ListPatientsProps > = ({
               />
             </div>
           ))}
-        
         </>
       ) : (
         <>
