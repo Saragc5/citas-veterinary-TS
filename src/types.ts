@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 export interface Paciente {
-  id: string;
+  id?: string;
   nombre: string;
   propietario: string
 }
@@ -16,7 +16,7 @@ export interface ChildrenProps {
 
 export interface EliminarPacienteProps {
   id: Paciente["id"]
-    eliminarPaciente: (id: string) => void;
+  eliminarPaciente: (id:Paciente["id"]) => void;
 }
 export interface SetPacienteProps{
     paciente : Paciente,
@@ -26,13 +26,13 @@ export interface SetPacienteProps{
 export interface SetListaPacientesProps {
   pacientes: Paciente[];
   setPacientes: React.Dispatch<React.SetStateAction<Paciente[]>>;
-  eliminarPaciente: (id: string) => void;
+  eliminarPaciente: (id:Paciente["id"]) => void;
 }
 export interface ListPatientsProps {
   id: Paciente['id'];
   pacientes : Paciente[],
   setPaciente: React.Dispatch<React.SetStateAction<Paciente>>; 
-  eliminarPaciente: (id: string) => void;
+  eliminarPaciente: (id:Paciente["id"]) => void;
 }
 
 

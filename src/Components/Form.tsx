@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { SetPacienteProps, SetListaPacientesProps, Paciente } from '../types'
-
+import { v4 as uuidv4 } from 'uuid';
 
 export const Form:React.FC<SetPacienteProps & SetListaPacientesProps> = ({
  paciente,
@@ -9,7 +9,7 @@ export const Form:React.FC<SetPacienteProps & SetListaPacientesProps> = ({
  setPacientes
 }) => {
   const [nombre, setNombre ] = useState<string>("")
-  const [propietario, setPropietario] = useState<string>()
+  const [propietario, setPropietario] = useState<string>("")
 
   const [error, setError ] = useState<boolean>(false)
 
@@ -21,50 +21,60 @@ export const Form:React.FC<SetPacienteProps & SetListaPacientesProps> = ({
     }
 }, [paciente]);
 
-const generarId = () => {
-  const random = Math.random().toString(36);
-  const fecha = Date.now().toString(36)
-  return random + fecha
-}
+// const generarId = () => {
+//   const random = Math.random().toString(36);
+//   const fecha = Date.now().toString(36)
+//   console.log( random, fecha)
+//   return random + fecha
+// }
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //Validación de formulario:
-    const isSomethingEmpty:boolean = Object.keys(paciente).some(item => (item === "" || item === " "));
-    console.log(isSomethingEmpty)
-    if (isSomethingEmpty === true) {
+    // const isSomethingEmpty:boolean = Object.keys(paciente).some(item => (item === "" || item === " "));
+    // console.log("isSomeThingEmpty es: ",isSomethingEmpty)
+    if ([nombre, propietario].includes('')) {
       console.log("Hay al menos un campo vacío");
       setError(true);
       return;
-    } else {
+    } 
       setError(false);
-      console.log("todos los campos están llenos");
-    }
+      
+          
     console.log("evento form: enviado datos");
 
-    const objetoPaciente: Paciente = {
-      id: "",
-      nombre: "",
-      propietario: "",
-    };
-    console.log("El paciente es: ", paciente)
-    if (paciente.id) {
-      // Editando el Registro
-      objetoPaciente.id = paciente.id;
-      const pacientesActualizados = pacientes.map((pacienteState) =>
-        pacienteState.id === paciente.id ? objetoPaciente : pacienteState
-      );
+    
 
-      setPacientes(pacientesActualizados);
-      setPaciente(objetoPaciente);
-    } else {
-      // Nuevo registro
-      objetoPaciente.id = generarId();
-      setPacientes([...pacientes, objetoPaciente]);
-    }
-    // Reiniciar el form
-    setNombre("");
-    setPropietario("");
+  
+
+      
+      const objetoPaciente: Paciente = {     
+        nombre,
+        propietario
+      };
+      console.log("El paciente es: ", paciente)
+      if (paciente.id) {
+        // Editando el Registro
+        objetoPaciente.id = paciente.id;
+        const pacientesActualizados = pacientes.map((pacienteState) =>
+          pacienteState.id === paciente.id ? objetoPaciente : pacienteState
+        );
+  
+        setPacientes(pacientesActualizados);
+        setPaciente(objetoPaciente);
+      } else {
+        // Nuevo registro
+        const generarIdUnico = (): string => {
+          return uuidv4();
+        };
+        objetoPaciente.id = generarIdUnico();
+        setPacientes([...pacientes, objetoPaciente]);
+      }
+      // Reiniciar el form
+      setNombre("");
+      setPropietario("");
+    
   };
 
 

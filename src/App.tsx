@@ -2,13 +2,12 @@ import { Header } from './Components/Header'
 import { ListPatients } from './Components/ListPatients';
 import { Form } from './Components/Form';
 import { useState, useEffect } from 'react'
-import { ListPatientsProps, Paciente } from './types'
-import { Patient } from './Components/Patient';
+import {  Paciente } from './types'
 
 const App:React.FC = () => {
 
   const [pacientes, setPacientes] = useState<Paciente[]>([]);
-  const [paciente, setPaciente] = useState<Paciente>({ id: '', nombre: '', propietario: '' });
+  const [paciente, setPaciente] = useState<Paciente>({ id:'', nombre: '', propietario: '' });
 
   useEffect(() => {
     const obtenerLista = () => {
@@ -23,7 +22,7 @@ const App:React.FC = () => {
     localStorage.setItem('pacientes', JSON.stringify(pacientes));
   }, [pacientes])
 
-  const eliminarPaciente = (id:string ) => {
+  const eliminarPaciente = (id: Paciente["id"] ) => {
     const pacientesActualizados = pacientes.filter( paciente => paciente.id !== id);
     setPacientes(pacientesActualizados)
   }

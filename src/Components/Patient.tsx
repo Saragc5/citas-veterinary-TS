@@ -8,12 +8,15 @@ export const Patient:React.FC<EliminarPacienteProps & SetPacienteProps> = ({
 }) => {
 
     console.log("La id actual es:" , id)
-  const handleEliminar = (id:string) => (e: React.MouseEvent<HTMLButtonElement>) => {
-    const respuesta = window.confirm('Deseas eliminar este paciente?');
+  const handleEliminar = (id:string | undefined) => (e: React.MouseEvent<HTMLButtonElement>) => {
+    if(id){
+        const respuesta :boolean = window.confirm('Deseas eliminar este paciente?');
 
-    if(respuesta) {
-        eliminarPaciente(id)
+        if(respuesta === true) {
+            eliminarPaciente(id)
+        }
     }
+
 }
   return(
     <div className="mx-5 my-10 bg-white shadow-md px-5 py-10 rounded-xl">
