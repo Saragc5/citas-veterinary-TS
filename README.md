@@ -8,7 +8,7 @@ Credits to Udemy Course: React - La Guía Completa
 
 ## You can see it live:
 
-[Citas veterinary](https://main--veterinay-appointments.netlify.app)
+[Citas veterinary](https://veterinary-appointments-list.netlify.app)
 
 
 ### Getting started:
