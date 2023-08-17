@@ -11,8 +11,10 @@ const App: React.FC = () => {
     nombre: "",
     propietario: "",
     email:"",
-    fecha:"",
-    sintomas:""
+    fechaIngreso:"",
+    fechaAlta:"",
+    sintomas:"",
+    tratamiento:""
   });
 
   useEffect(() => {
@@ -37,7 +39,7 @@ const App: React.FC = () => {
     setPacientes(pacientesActualizados);
   };
 
-  
+
   return (
     <div className="container mx-auto mt-20">
       <Header />
